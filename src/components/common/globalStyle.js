@@ -3,7 +3,7 @@ import { reset } from 'styled-reset';
 
 const GlobalStyles = createGlobalStyle` 
     ${reset}
-  * {
+    * {
     box-sizing: border-box;
     }
     
@@ -18,8 +18,16 @@ const GlobalStyles = createGlobalStyle`
         height: 100%;
     }
 
+    button {
+        background: none;
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
     button:hover {
-        cursor: pointer
+        cursor: pointer;
+        
     }
 `;
 

@@ -3,10 +3,12 @@ import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
 import { isSameMonth, isSameDay, addDays } from 'date-fns';
 import React,{useState} from "react";
 import styled from "styled-components";
+import Header from "../common/Header";
+import Navigator from "../common/Navigator";
 
 const RenderHeader = ({currentMonth, prevMonth, nextMonth}) => {
     return (
-            <Header>
+            <StyledHeader>
                 <StyledYear>{format(currentMonth,'yyyy')}</StyledYear>
                 <ColMonth>
                     <div className="prev-month-icon" onClick={prevMonth}>
@@ -19,7 +21,7 @@ const RenderHeader = ({currentMonth, prevMonth, nextMonth}) => {
                         next
                     </div>
                 </ColMonth>
-            </Header>
+            </StyledHeader>
 
         
     )
@@ -105,26 +107,35 @@ export const Calendar = () => {
         setSelectedDate(day);
         console.log(format(day,'yyyyMMdd'));
     }
+
     return (
-        <div className="calendar">
-            <RenderHeader 
-                currentMonth={currentMonth}
-                prevMonth={prevMonth}
-                nextMonth={nextMonth}
-            />
-            <Border>
-                <RenderDays/>
-                <RenderCells
+        <>
+            <Header/>
+            <StyledCalendar>
+                <RenderHeader 
                     currentMonth={currentMonth}
-                    selectedDate={selectedDate}
-                    onDateClick={onDateClick}
+                    prevMonth={prevMonth}
+                    nextMonth={nextMonth}
                 />
-            </Border>
-        </div>
+                <Border>
+                    <RenderDays/>
+                    <RenderCells
+                        currentMonth={currentMonth}
+                        selectedDate={selectedDate}
+                        onDateClick={onDateClick}
+                    />
+                </Border>
+            </StyledCalendar>
+        </>
     )
 }
 
-const Header = styled.div`
+const StyledCalendar = styled.div`
+    left: 0;
+    right: 0;
+`
+
+const StyledHeader = styled.div`
     margin:0;
     display:flex;
     flex-direction:column;
@@ -138,6 +149,7 @@ const Header = styled.div`
     .next-month-icon{
         font-size:2.5rem;
     }
+    padding-top: 9.8rem;
 `
 
 const StyledYear = styled.div`
