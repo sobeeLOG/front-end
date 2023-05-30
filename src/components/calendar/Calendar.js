@@ -5,6 +5,44 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import Header from "../common/Header";
 import Navigator from "../common/Navigator";
+import { ICArrowLeft, ICArrowRight } from "../../assets";
+
+export const Calendar = () => {
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const prevMonth = () => {
+        setCurrentMonth(subMonths(currentMonth,1));
+    }
+    const nextMonth = () => {
+        setCurrentMonth(addMonths(currentMonth,1));
+    }
+
+    const onDateClick = (day) => {
+        setSelectedDate(day);
+        console.log(format(day,'yyyyMMdd'));
+    }
+
+    return (
+        <>
+            <StyledCalendar>
+                <RenderHeader 
+                    currentMonth={currentMonth}
+                    prevMonth={prevMonth}
+                    nextMonth={nextMonth}
+                />
+                <Border>
+                    <RenderDays/>
+                    <RenderCells
+                        currentMonth={currentMonth}
+                        selectedDate={selectedDate}
+                        onDateClick={onDateClick}
+                    />
+                </Border>
+            </StyledCalendar>
+        </>
+    )
+}
 
 const RenderHeader = ({currentMonth, prevMonth, nextMonth}) => {
     return (
@@ -12,13 +50,13 @@ const RenderHeader = ({currentMonth, prevMonth, nextMonth}) => {
                 <StyledYear>{format(currentMonth,'yyyy')}</StyledYear>
                 <ColMonth>
                     <div className="prev-month-icon" onClick={prevMonth}>
-                        prev
+                        <ICArrowLeft />
                     </div>
                     <div className="text-month">
                         {format(currentMonth,'M')}월
                     </div>
                     <div className="next-month-icon" onClick={nextMonth}>
-                        next
+                        <ICArrowRight />
                     </div>
                 </ColMonth>
             </StyledHeader>
@@ -92,43 +130,7 @@ const RenderCells = ({currentMonth, selectedDate, onDateClick}) => {
     return <Body>{rows}</Body>;
 }
 
-export const Calendar = () => {
-    const [currentMonth, setCurrentMonth] = useState(new Date());
-    const [selectedDate, setSelectedDate] = useState(new Date());
 
-    const prevMonth = () => {
-        setCurrentMonth(subMonths(currentMonth,1));
-    }
-    const nextMonth = () => {
-        setCurrentMonth(addMonths(currentMonth,1));
-    }
-
-    const onDateClick = (day) => {
-        setSelectedDate(day);
-        console.log(format(day,'yyyyMMdd'));
-    }
-
-    return (
-        <>
-            <Header/>
-            <StyledCalendar>
-                <RenderHeader 
-                    currentMonth={currentMonth}
-                    prevMonth={prevMonth}
-                    nextMonth={nextMonth}
-                />
-                <Border>
-                    <RenderDays/>
-                    <RenderCells
-                        currentMonth={currentMonth}
-                        selectedDate={selectedDate}
-                        onDateClick={onDateClick}
-                    />
-                </Border>
-            </StyledCalendar>
-        </>
-    )
-}
 
 const StyledCalendar = styled.div`
     left: 0;
