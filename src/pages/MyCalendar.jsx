@@ -34,7 +34,7 @@ const StyledMyCalendar = styled.div`
     overflow-y:scroll;
     height: 90vh;
     margin-bottom: 8.2rem;
-    -webkit-scrollbar {
+    ::-webkit-scrollbar {
         display: none;
     }
 `;

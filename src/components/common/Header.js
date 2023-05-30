@@ -14,6 +14,7 @@ export default Header;
 
 const StyledHeader = styled.header`
     position: fixed;
+    top:0;
     left: 0;
     right: 0;
     padding-left: 2.3rem;

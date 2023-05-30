@@ -34,8 +34,7 @@ const StyledNavigator = styled.footer`
     position: fixed;
     width: 100%;
     display: flex;
-    gap: 5.6rem;
-    padding: 1.4rem 4.1rem 1.385rem 4.1rem;
+    padding: 1.4rem 4.1rem 1.4rem 4.1rem;
     box-shadow: 0px -4px 8px rgba(178, 178, 226, 0.25);
     bottom: 0;
     box-sizing:border-box;
