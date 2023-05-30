@@ -4,6 +4,8 @@ const colors = {
     backgroundBlue: '#CAD4F8',
     mainYellow: '#FFDB48',
     white: '#FFFFFF',
+    red: '#E43131',
+    grey: '#D9D9D9'
 }
 
 const theme = {
