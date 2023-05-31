@@ -1,7 +1,7 @@
 const colors = {
     mainBlue: '#2C54E4',
     lightBlue: '#7B94EE',
-    backgroundBlue: '#CAD4F8',
+    backgroundBlue: '#E5EAFC',
     mainYellow: '#FFDB48',
     white: '#FFFFFF',
     red: '#E43131',
