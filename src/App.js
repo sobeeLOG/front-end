@@ -37,11 +37,13 @@ const WrapScreen = styled.div`
   margin:0rem 40.5rem;
   border:1px;
   font-size: 62.5%;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 `
 const WrapMobileScreen = styled.div`
   height:100vh;
   overflow: hidden;
   font-size: 62.5%;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 `
 
 export default App;

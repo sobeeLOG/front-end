@@ -46,13 +46,14 @@ const StyledNavigator = styled.footer`
 const StyledNavButton = styled.button`
     padding: 0;
     display:flex;
+    &:hover {
+        svg > path {
+            fill-opacity: 1.0;
+        }
+    }
     svg > path {
         fill-opacity: ${(props) => (props.isactive ? 1.0 : 0.5)}
     }
 
-    &:hover {
-        svg > path {
-            fill: ${(props) => props.theme.colors.mainBlue};
-        }
-    }
+    
 `
