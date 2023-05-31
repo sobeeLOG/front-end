@@ -18,7 +18,7 @@ export const consumptionList = [
     negativeEmoticonCount:2,
     },
 {
-    chistoryID: 3,
+    chistoryID: 2,
     userID : 2,
     amount : 15000,
     content : "다른 내용",

@@ -9,3 +9,5 @@ export {ReactComponent as ICBadEmoticon} from './icon/badEmoticon.svg';
 export {ReactComponent as ICComment} from './icon/comment.svg';
 export {ReactComponent as ICArrowLeft} from './icon/arrowLeft.svg';
 export {ReactComponent as ICArrowRight} from './icon/arrowRight.svg';
+export {ReactComponent as ICAddButton} from './icon/addButton.svg';
+export {ReactComponent as ICCloseButton} from './icon/closeButton.svg';

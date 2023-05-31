@@ -17,12 +17,12 @@ const StyledTaged = styled.div`
     height: 2.2rem;
     background-color: ${(props) => props.theme.colors.mainBlue};
     border-radius: 2rem;
-    padding-top: 0.3rem;
-    padding-left: 2rem;
-    margin-top:0.628rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     p {
         font-size: 1.5rem;
         font-weight: 400;
-        color: #FFFFFF
+        color: #FFFFFF;
     }
 `
