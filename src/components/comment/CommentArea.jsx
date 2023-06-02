@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ICProfile } from '../../assets';
 
 function CommentArea({comment}){
+    console.log(comment);
     return(
         <StyledComment>
             <StyledProfile>
                 <ICProfile/>
-                <p>{comment.userID}</p>
+                <p>{JSON.stringify(comment.userID)}</p>
             </StyledProfile>
             <StyledContent>
-                <p>{comment.content}</p>
+                <p>{JSON.stringify(comment.content)}</p>
             </StyledContent>
         </StyledComment>
     )

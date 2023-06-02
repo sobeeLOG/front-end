@@ -2,8 +2,6 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import { ICCloseButton } from '../../assets';
 
-
-
 const Tag = ({content, isTagClicked, onClick, index}) => {
     return ( 
         <>
