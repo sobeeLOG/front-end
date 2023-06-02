@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {ICProfile, ICGoodEmoticon, ICBadEmoticon, ICComment} from '../../assets';
 import Tag from '../common/TagDesign';
 import CommentArea from '../comment/CommentArea';
 import CommentInput from '../comment/CommentInput';
-function CalendarConsumption(info){
-    const content = info.info; //TODO: content를 useState로 관리해야 댓글 업데이트를 적용 가능
-    console.log(content.category);
+
+function CalendarConsumption({info}){
+    const [content, setContent] = useState(info);
+    console.log(content);
+    const commentArray = content.comment.slice(0,1);
+    console.log(commentArray);
     // TODO : userID에 따라서 닉네임 가져오는 과정이 있어야함
     return(
         <StyledCalendarConsumption>
             <StyledHeader>
                 <StyledProfile>
                     <ICProfile/>
-                    <div>{content.userID}</div>
+                    <div>{content.writerNickname}</div>
                 </StyledProfile>
                 <StyledCountReaction>
                     <StyledPositiveEmoticon>
@@ -41,9 +44,15 @@ function CalendarConsumption(info){
                     -{content.amount}원
                 </StyledAmount>
             </StyledBody>
-            {content.category.map((element)=> <Tag content={element}/>)}
+            {
+                (typeof(content.category)=='string') ? <Tag content={content.category}/> : content.category.map((element)=> <Tag content={element}/>)
+            }
+
             {(content.comment.length >= 1) ? <StyledCommentArea>
-                    <CommentArea comment={content.comment[0]}/>
+                    {content.comment && commentArray.map((element)=>{
+                            console.log("여기",element);
+                            return <CommentArea comment={element}/>
+                    })} 
             </StyledCommentArea> : <CommentInput/>}
         </StyledCalendarConsumption>
     )

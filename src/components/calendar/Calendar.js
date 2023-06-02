@@ -7,7 +7,7 @@ import Header from "../common/Header";
 import Navigator from "../common/Navigator";
 import { ICArrowLeft, ICArrowRight } from "../../assets";
 
-export const Calendar = () => {
+export const Calendar = ({onClick}) => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -20,7 +20,9 @@ export const Calendar = () => {
 
     const onDateClick = (day) => {
         setSelectedDate(day);
-        console.log(format(day,'yyyyMMdd'));
+        const date = new Date(format(day, 'yyyy-MM-dd'));
+        const sendDate = format(date,'yyyy-MM-dd');
+        onClick(sendDate);
     }
 
     return (
