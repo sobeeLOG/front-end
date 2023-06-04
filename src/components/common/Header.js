@@ -20,4 +20,3 @@ const StyledHeader = styled.header`
     padding-left: 2.3rem;
     background-color: #FFFFFF;
 `
-
