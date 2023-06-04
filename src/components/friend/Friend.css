@@ -1,14 +1,10 @@
-body {
-  padding-bottom: 3.125rem;
-  font-family: 'IBM Plex Sans KR', sans-serif;
-  font-size: 15px;
-}
-
 .grid {
-  border: 0.125rem solid;
-  border-radius: 0.625rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
   padding: 0.25rem 0.1rem;
-  margin: 0.25rem 1.4375rem;
 }
 
 .grid p {
@@ -43,14 +39,6 @@ body {
   width: 5rem;
   height: 5rem;
   align-items: center;
-}
-
-button {
-  width: 5.8rem;
-  border-radius: 0.625rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  float: inline-end;
 }
 
 .reply_buttons {

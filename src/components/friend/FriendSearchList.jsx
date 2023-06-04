@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import './Friend.css'
 import { ICProfile } from '../../assets';
 
@@ -18,7 +19,7 @@ function FriendSearchPage() {
               </div>
               <div> {requestListElem} </div>
               <div className='reply_buttons'>
-                <button className='button_blue'>팔로우</button>
+                <StyledButton className='button_blue'>팔로우</StyledButton>
               </div> 
             </div>
           );
@@ -30,3 +31,11 @@ function FriendSearchPage() {
 }
 
 export default FriendSearchPage;
+
+const StyledButton = styled.button`
+  width: 5.8rem;
+  border-radius: 0.625rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  float: inline-end;
+`;

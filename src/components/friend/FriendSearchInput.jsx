@@ -19,9 +19,12 @@ const FindFriends = styled.div`
   justify-self: center;
   box-sizing: border-box;
   background: white;
-  border: 1px solid black;
-  border-radius: 0.625rem;
-  margin: 2rem 1.5rem 0 1.5rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin-top: 1.9rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  padding: 0.25rem 0.1rem;
 `;
 
 const StyledInput = styled.input`
