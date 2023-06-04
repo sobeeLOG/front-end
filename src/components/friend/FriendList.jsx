@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { client } from "../../libs/api";
 import './Friend.css'
 import { ICProfile } from '../../assets';
 import styled from "styled-components";
 
-function FriendList(){
-    //TODO: API 불러와서 실제 데이터로 바꾸기
-    let userName = ['일순신', '이순신', '삼순신', '사순신', '오순신', '육순신','칠순신', '팔순신', '구순신', '십순신'];
+function FriendList({info}){
+    const [userName, setUserName] = useState([]);
+
+    useEffect(() => {
+        const fetchFriendList = async () => {
+        try {
+            const userID = 1; //TODO: 로그인 한 사용자의 아이디를 가져오도록 바꾸기
+            const response = await client.get(`/friends/${userID}`);
+            const friendList = response.data.data.friendsList;
+            const nicknames = friendList.map(friend => friend.nickname);
+            setUserName(nicknames);
+        } catch (error) {
+            console.log(error);
+        }};
+
+        fetchFriendList();
+    }, []);
 
     return (
         <div className='grid'>
