@@ -52,7 +52,7 @@ function MyCalendar() {
             </StyledConsumptionList>
             <StyledButton>
                 <ICAddButton onClick={openModal}/>
-                <ConsumptionModal open={modalOpen} close={closeModal}/>
+                <ConsumptionModal open={modalOpen} close={closeModal} date={chosenDate}/>
             </StyledButton>
         </StyledMyCalendar>
         <Navigator category="calendar" />
