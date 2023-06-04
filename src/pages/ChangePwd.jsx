@@ -1,34 +1,26 @@
 import styled from 'styled-components';
 import Header from '../components/common/Header2';
-import { Link } from 'react-router-dom';
 
-function Login() {
+function ChangePwd() {
     return (
-        <StyledLogin>
+        <StyledChangePwd>
             <Header/>
-            <Text1>이메일</Text1>
+            <Text1>비밀번호</Text1>
             <StyledBox1>
-                <input type="email" placeholder='이메일을 입력하세요'/>
+                <input type="password" placeholder='변경할 비밀번호를 입력하세요'/>
             </StyledBox1>
-            <Text2>비밀번호</Text2>
+            <Text2>비밀번호 확인</Text2>
             <StyledBox1>
-                <input type="password" placeholder='비밀번호를 입력하세요'/>
+                <input type="password" placeholder='변경할 비밀번호를 한 번 더 입력하세요'/>
             </StyledBox1>
-            <StyledBox2>로그인</StyledBox2>
-            <Container>
-                <Word><Link to="/Join" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    회원 가입</Link></Word>
-                <Word>/</Word>
-                <Word><Link to="/ChangePwd" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    비밀번호 찾기</Link></Word>
-            </Container>
-        </StyledLogin>
+            <StyledBox2>비밀번호 변경</StyledBox2>
+        </StyledChangePwd>
     );
 }
 
-export default Login;
+export default ChangePwd;
 
-const StyledLogin = styled.div`
+const StyledChangePwd = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,26 +72,14 @@ const StyledBox2 = styled.div`
 
 const Text1 = styled.div`
     position: absolute;
-    top: 31%;
+    top: 31.5%;
     left: 20%;
     font-size: 15px;
 `;
 
 const Text2 = styled.div`
     position: absolute;
-    top: 41.5%;
+    top: 42%;
     left: 20%;
     font-size: 15px;
-`;
-
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-`;
-
-const Word = styled.div`
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-    font-size: 12px;
 `;
