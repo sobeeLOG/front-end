@@ -11,3 +11,5 @@ export {ReactComponent as ICArrowLeft} from './icon/arrowLeft.svg';
 export {ReactComponent as ICArrowRight} from './icon/arrowRight.svg';
 export {ReactComponent as ICAddButton} from './icon/addButton.svg';
 export {ReactComponent as ICCloseButton} from './icon/closeButton.svg';
+export {ReactComponent as ICAddFriend} from './icon/addFriend.svg';
+export {ReactComponent as ICSearchButton} from './icon/searchButton.svg';

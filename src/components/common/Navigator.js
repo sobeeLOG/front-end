@@ -36,16 +36,20 @@ const StyledNavigator = styled.footer`
     display: flex;
     padding: 1.4rem 4.1rem 1.4rem 4.1rem;
     box-shadow: 0px -4px 8px rgba(178, 178, 226, 0.25);
+    left: 0;
     bottom: 0;
     box-sizing:border-box;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 6.4rem;
     background-color: #FFFFFF;
-`
+`;
 
 const StyledNavButton = styled.button`
     padding: 0;
     display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.5rem;
     &:hover {
         svg > path {
             fill-opacity: 1.0;
@@ -54,6 +58,4 @@ const StyledNavButton = styled.button`
     svg > path {
         fill-opacity: ${(props) => (props.isactive ? 1.0 : 0.5)}
     }
-
-    
-`
+`;
