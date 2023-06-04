@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { client } from "../../libs/api";
 import './Friend.css'
 import { ICProfile } from '../../assets';
-import styled from "styled-components";
 
 function FriendRequestList() {
   const [request, setRequest] = useState([]);
@@ -35,8 +34,8 @@ function FriendRequestList() {
                     </div>
                     <div> {requestListElem} </div>
                     <div className='reply_buttons'> 
-                        <StyledButton className='button_blue'>수락</StyledButton> 
-                        <StyledButton className='button_grey'>거절</StyledButton>
+                        <button className='button_blue'>수락</button> 
+                        <button className='button_grey'>거절</button>
                     </div> 
                     </div>
                 );
@@ -47,11 +46,3 @@ function FriendRequestList() {
 }
 
 export default FriendRequestList;
-
-const StyledButton = styled.button`
-  width: 5.8rem;
-  border-radius: 0.625rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  float: inline-end;
-`;

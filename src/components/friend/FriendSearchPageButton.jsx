@@ -15,6 +15,7 @@ function FriendSearchPageButton() {
 
 export default FriendSearchPageButton;
 
+
 const ButtonGoToRequestPage = styled.button`
     margin: 1.2rem 0 0 auto;
     margin-right: 1.5rem;
