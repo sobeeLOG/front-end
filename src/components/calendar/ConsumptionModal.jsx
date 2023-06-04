@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { ICCloseButton } from '../../assets';
-
+import { client } from '../../libs/api';
+import qs from 'qs'
 const Tag = ({content, isTagClicked, onClick, index}) => {
     return ( 
         <>
@@ -33,18 +34,62 @@ const CheckButton = ({children, isChecked, onChange}) => {
     )
 }
 
-function ConsumptionModal({open, close}){
+function ConsumptionModal({open, close, date}){
     const tagContentList = ['쇼핑', '음식', '생필품', '취미', '교통', '경조사'];
+    const [content, setContent]  = useState();
+    const [price, setPrice] = useState();
     const [isTagClicked, setIsTagClicked] = useState(false);
     const [tagContent, setTagContent] = useState('');
-    const [secret, setSecret] = useState(false);
-    console.log(tagContent);
-    const onTagClickHandler = (idx) => {
+    const [secret, setSecret] = useState(true);
+    const [check, setCheck] = useState(false);
+
+    const tagClickHandler = (idx) => {
         const newArr = Array(tagContentList.length).fill(false);
         newArr[idx] = true;
         setIsTagClicked(newArr);
-        setTagContent(tagContentList[idx]);
+        setTagContent(tagContentList[idx]); //보내야할 태그값
     }
+
+    const contentChangeHandler = (event) => {
+        setContent(event.target.value);
+    }
+
+    const priceChangeHandler = (event) => {
+        setPrice(event.target.value);
+    }
+
+    const secretClickHandler = async (checked) => {
+        console.log('클릭됨',checked);
+        setSecret(checked);
+        setCheck(checked);
+    }
+
+    const submitFormHandler = async (event) => {
+        event.preventDefault();
+        console.log("실행중");
+        console.log(date);
+        const postData = {
+            userID: 1,
+            date: JSON.stringify(date),
+            content: JSON.stringify(content),
+            amount: JSON.stringify(price),
+            category: JSON.stringify(tagContent),
+            secret: secret,
+        }
+        const {data} =  await client.post(`/consumptions`,{...postData});
+        if(data.success){
+            close();
+            window.location.replace("/calendar");
+        }
+    }
+
+    useEffect(()=>{
+        setContent();
+        setPrice();
+        setSecret(false);
+        setTagContent('');
+    },[])
+
     return(
         <>
             {open ? (
@@ -54,14 +99,24 @@ function ConsumptionModal({open, close}){
                             <p>오늘의 소비</p>
                             <ICCloseButton onClick={close} />
                         </StyledHeader>
-                        <StyledForm>
+                        <StyledForm onSubmit={submitFormHandler}>
                             <StyledContent>
                                 <p>사용내역</p>
-                                <StyledContentInput placeholder='사용한 내역을 입력하세요'/>
+                                <StyledContentInput 
+                                    placeholder='사용한 내역을 입력하세요' 
+                                    name="content" 
+                                    value={content} 
+                                    onChange={contentChangeHandler}
+                                />
                             </StyledContent>
                             <StyledAmount>
                                 <p>가격</p>
-                                <StyledAmountInput placeholder='가격을 입력하세요'/>
+                                <StyledAmountInput 
+                                    placeholder='가격을 입력하세요'
+                                    name="price"
+                                    value={price}
+                                    onChange={priceChangeHandler}
+                                />
                             </StyledAmount>
                             <StyledTagBody>
                                 <p>태그</p>
@@ -71,19 +126,19 @@ function ConsumptionModal({open, close}){
                                             key={index}
                                             isTagClicked={isTagClicked[index]}
                                             content={element} 
-                                            onClick={onTagClickHandler} 
+                                            onClick={tagClickHandler} 
                                             index={index}
                                         />
                                     })}
                                 </StyledTagList>
                             </StyledTagBody>
                             <StyledBottom>
-                                <CheckButton isChecked={secret} onChange={setSecret}>
-                                    <p>공개</p>                                
+                                <CheckButton isChecked={check} onChange={secretClickHandler}>
+                                    <p>비공개</p>                                
                                 </CheckButton>
-                                <StyledSumbitButton type="submit"> 
-                                    <p>작성</p>
-                                </StyledSumbitButton>
+                                    <StyledSumbitButton type="submit"> 
+                                        <p>작성</p>
+                                    </StyledSumbitButton>
                             </StyledBottom>
                         </StyledForm>
                     </StyledConsumptionModal>
