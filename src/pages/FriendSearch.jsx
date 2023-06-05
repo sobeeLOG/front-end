@@ -1,25 +1,23 @@
 import styled from 'styled-components';
 import Navigator from '../components/common/Navigator';
 import Header from '../components/common/Header';
-import FriendList from '../components/friend/FriendList';
-import FriendRequestList from '../components/friend/FriendRequestList';
-import FriendSearchPageButton from '../components/friend/FriendSearchPageButton';
+import FriendSearchInput from '../components/friend/FriendSearchInput';
+import FriendSearchList from '../components/friend/FriendSearchList';
 
-function Friend() {
+function FriendSearch() {
     return (
         <StyledFriend>
             <Header/>
             <StyledFriendList>
-                <FriendSearchPageButton/>
-                <FriendRequestList/>
-                <FriendList/>
+                <FriendSearchInput/>
+                <FriendSearchList/>
             </StyledFriendList>
-            <Navigator category="friend" />
+            <Navigator category="friend"/>
         </StyledFriend>
     );
 }
 
-export default Friend;
+export default FriendSearch;
 
 const StyledFriend = styled.div`
     overflow-y:scroll;
