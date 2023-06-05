@@ -56,7 +56,11 @@ function MyCalendar() {
             <TotalAmount amount={todayAmount}/>
             <StyledConsumptionList>
                 {list && list.map((element) => {
-                    return <CalendarConsumption info={element} key={element.chistoryID} onClick={()=>navigate(`/consumptionDetail?id=${element.cHistoryID}`)}/>
+                    return <CalendarConsumption 
+                    info={element} 
+                    key={element.chistoryID} 
+                    onClick={()=>navigate(`/consumptionDetail?id=${element.cHistoryID}`)}
+                    />
                 })}
             </StyledConsumptionList>
             <StyledButton>
