@@ -8,7 +8,7 @@ function Home() {
             <StyledLogo>
                 <Logo/>
             </StyledLogo>
-            <Link to="/Join" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/Login" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <StyledStart>시작하기</StyledStart></Link>
         </StyledHome>
     );
