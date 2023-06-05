@@ -10,14 +10,17 @@ import { format } from "date-fns";
 import { ICAddButton } from '../assets';
 import ConsumptionModal from '../components/calendar/ConsumptionModal';
 import { client } from '../libs/api';
+import { useNavigate } from 'react-router-dom';
 
 function MyCalendar() {
+    const navigate = useNavigate();
     const today = new Date();
     const defaultDate = format(today, 'yyyy-MM-dd');
     const [list, setList] = useState(consumptionList);
     const [chosenDate, setChosenDate] = useState(defaultDate);
     const [modalOpen, setModalOpen] = useState(false);
-    
+    const [todayAmount, setTodayAmount] = useState(0);
+
     const openModal = () => {
         setModalOpen(true);
     }
@@ -29,14 +32,20 @@ function MyCalendar() {
     const getConsumptionListDataByDate = async () => {
         const {data} = await client.get(`/mycalendar/date/${chosenDate}`);
         console.log("chosenDate",chosenDate);
-        console.log(data.data.result);
         setList(data.data.result);
     }
     
-    
+    const getTodayAmount = async() => {
+        const hypenNoDate = chosenDate.replaceAll('-','')
+        //TODO: userID 수정해야함
+        const {data} = await client.get(`/mycalendar/amount?date=${hypenNoDate}&&userID=1`);
+        console.log(data.data.amount[0].t_amount);
+        setTodayAmount(data.data.amount[0].t_amount);
+    }
 
     useEffect(()=> {
-        getConsumptionListDataByDate();
+        getConsumptionListDataByDate(chosenDate);
+        getTodayAmount(chosenDate);
     },[chosenDate])
 
     return (
@@ -44,10 +53,10 @@ function MyCalendar() {
         <Header/>
         <StyledMyCalendar>
             <Calendar onClick={setChosenDate}/>
-            <TotalAmount/>
+            <TotalAmount amount={todayAmount}/>
             <StyledConsumptionList>
                 {list && list.map((element) => {
-                    return <CalendarConsumption info={element} key={element.chistoryID}/>
+                    return <CalendarConsumption info={element} key={element.chistoryID} onClick={()=>navigate(`/consumptionDetail?id=${element.cHistoryID}`)}/>
                 })}
             </StyledConsumptionList>
             <StyledButton>

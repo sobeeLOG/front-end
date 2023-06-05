@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function TotalAmount(){
-    const amount = 15000;
+function TotalAmount({amount}){
+    if(amount == null) {
+        amount = 0;
+    }
     return(
         <>
             <StyledTotalAmount>
