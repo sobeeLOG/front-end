@@ -5,24 +5,11 @@ import styled from 'styled-components';
 import { client } from '../libs/api';
 import Header from '../components/common/Header';
 import Navigator from '../components/common/Navigator';
-import {ICProfile, ICGoodEmoticon, ICBadEmoticon, ICComment} from '../assets';
+import {ICProfile, ICGoodEmoticon, ICBadEmoticon} from '../assets';
 
 import Tag from '../components/common/TagDesign';
 import CommentInput from '../components/comment/CommentInput';
 
-function Comment(element){
-    return (
-        <>  
-            <StyledCommentContent>
-                <ICProfile width="31" height="32"/>
-                <p>${element.content}</p>
-            </StyledCommentContent>
-            <StyledReplyButton>
-                답글달기
-            </StyledReplyButton>
-        </>
-    )
-}
 function ConsumptionDetail(){
     const {search} = useLocation();
     const cHistoryID = queryString.parse(search).id;
@@ -119,8 +106,8 @@ function ConsumptionDetail(){
                                 )
                     })} 
                 </StyledCommentArea>
-                <StyledCommentInput >
-                    <CommentInput replyActive={replyActive} replyCommentInfo={replyCommentInfo}/>
+                <StyledCommentInput>
+                    <CommentInput cHistoryID={cHistoryID} replyActive={replyActive} replyCommentInfo={replyCommentInfo}/>
                 </StyledCommentInput>
             </StyledDetail>
             <Navigator/>
@@ -252,7 +239,7 @@ const StyledBadEmoticon = styled.div`
 
 const StyledCommentArea = styled.div`
     margin-top: 1.615rem;
-    padding: 1.6rem 1.7rem 0.7rem 1.7rem;
+    padding: 1.6rem 1.7rem 1.6rem 1.7rem;
     background: rgba(217, 217, 217, 0.3);
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
     border-radius: 1rem;
@@ -262,6 +249,10 @@ const StyledCommentArea = styled.div`
     display:flex;
     flex-direction: column;
     gap: 1.3rem;
+    overflow-y:scroll;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 const StyledComment = styled.div`

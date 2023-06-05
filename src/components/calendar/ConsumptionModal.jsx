@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { ICCloseButton } from '../../assets';
 import { client } from '../../libs/api';
-import qs from 'qs'
+
 const Tag = ({content, isTagClicked, onClick, index}) => {
     return ( 
         <>
@@ -59,14 +59,12 @@ function ConsumptionModal({open, close, date}){
     }
 
     const secretClickHandler = async (checked) => {
-        console.log('클릭됨',checked);
         setSecret(checked);
         setCheck(checked);
     }
 
     const submitFormHandler = async (event) => {
         event.preventDefault();
-        console.log("실행중");
         console.log(date);
         const postData = {
             userID: 1,
@@ -393,7 +391,6 @@ const StyledCheckButton = styled.div`
     gap: 0.158rem;
     align-items: center;
     p{
-        font-family: 'NanumGothic';
         font-style: normal;
         font-weight: 400;
         font-size: 1.6rem;
@@ -411,7 +408,6 @@ const StyledSumbitButton = styled.button`
     border-radius: 20px;
 
     p{
-        font-family: 'NanumGothic';
         font-style: normal;
         font-weight: 400;
         font-size: 2rem;

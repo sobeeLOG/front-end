@@ -13,7 +13,6 @@ function Feed() {
         const {data} = await client.get(`/calendarfeed`);
         console.log(data.data.feedList);
         setFeedList(data.data.feedList);
-        console.log(feedList);
     }
     
     

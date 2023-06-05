@@ -12,7 +12,7 @@ function CalendarConsumption({info, onClick}){
     console.log(commentArray);
     // TODO : userID에 따라서 닉네임 가져오는 과정이 있어야함
     return(
-        <StyledCalendarConsumption onClick={onClick}>
+        <StyledCalendarConsumption>
             <StyledHeader>
                 <StyledProfile>
                     <ICProfile/>
@@ -36,7 +36,7 @@ function CalendarConsumption({info, onClick}){
             
             <StyledLine/>
 
-            <StyledBody>
+            <StyledBody onClick={onClick}>
                 <StyledContent>
                     {content.content}
                 </StyledContent>
@@ -53,7 +53,7 @@ function CalendarConsumption({info, onClick}){
                             console.log("여기",element);
                             return <CommentArea comment={element}/>
                     })} 
-            </StyledCommentArea> : <CommentInput/>}
+            </StyledCommentArea> : <CommentInput cHistoryID={content.cHistoryID}/>}
         </StyledCalendarConsumption>
     )
 }

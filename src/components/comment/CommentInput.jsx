@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ICComment } from '../../assets';
+import { client } from '../../libs/api';
 
-function CommentInput({replyActive, replyCommentInfo}){
+function CommentInput({cHistoryID, replyActive, replyCommentInfo}){
     // TODO: 댓글 POST할 때 필요(onClick에 걸어야함)
     // const cHistoryID = chistoryId;
     const [comment, setComment] = useState('');
@@ -18,25 +19,48 @@ function CommentInput({replyActive, replyCommentInfo}){
         setComment(e.target.value);
     }
 
+    const parentCommentClick = async () => {
+        const postData = {
+            userID: 1,
+            content: JSON.stringify(comment),
+            replyID: 0,
+        }
+        const {data} =  await client.post(`/comment/${cHistoryID}`,{...postData});
+        if(data.success){
+            window.location.reload();
+        }
+    }
+
+    const childrenCommentClick = async () => {
+        const postData = {
+            userID: 1,
+            content: JSON.stringify(comment),
+            replyID: replyCommentInfo.commentID,
+        }
+        const {data} =  await client.post(`/comment/${cHistoryID}`,{...postData});
+        if(data.success){
+            window.location.reload();
+        }
+    }
+
     useEffect(()=>{
         update()
     });
 
-    console.log(comment);
     return(
         replyActive ? 
         <StyledReplyCommentInputBox>
             <input placeholder={replyInfo} onChange={onChange} />
-            <ICComment onClick={()=>{
-                console.log("댓글 작성 완료");
-            }}/>
+            <ICComment onClick={
+                childrenCommentClick
+            }/>
         </StyledReplyCommentInputBox>
         :
         <StyledCommentInputBox>
             <input placeholder='댓글을 입력하세요' onChange={onChange} />
-            <ICComment onClick={()=>{
-                console.log("댓글 작성 완료");
-            }}/>
+            <ICComment onClick={
+                parentCommentClick
+            }/>
         </StyledCommentInputBox>
     )
 }
@@ -73,12 +97,9 @@ const StyledCommentInputBox = styled.div`
     }
 `
 
-const StyledInput = styled.input`
-    
-`
 
 const StyledReplyCommentInputBox = styled.div`
-display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 2.8rem;
@@ -105,4 +126,5 @@ display: flex;
             outline:none;
         }
     }
+
 `
