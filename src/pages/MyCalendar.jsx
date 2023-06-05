@@ -10,8 +10,10 @@ import { format } from "date-fns";
 import { ICAddButton } from '../assets';
 import ConsumptionModal from '../components/calendar/ConsumptionModal';
 import { client } from '../libs/api';
+import { useNavigate } from 'react-router-dom';
 
 function MyCalendar() {
+    const navigate = useNavigate();
     const today = new Date();
     const defaultDate = format(today, 'yyyy-MM-dd');
     const [list, setList] = useState(consumptionList);
@@ -47,7 +49,7 @@ function MyCalendar() {
             <TotalAmount/>
             <StyledConsumptionList>
                 {list && list.map((element) => {
-                    return <CalendarConsumption info={element} key={element.chistoryID}/>
+                    return <CalendarConsumption info={element} key={element.chistoryID} onClick={()=>navigate(`/consumptionDetail?id=${element.cHistoryID}`)}/>
                 })}
             </StyledConsumptionList>
             <StyledButton>

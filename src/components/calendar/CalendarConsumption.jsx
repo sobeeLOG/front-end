@@ -5,14 +5,14 @@ import Tag from '../common/TagDesign';
 import CommentArea from '../comment/CommentArea';
 import CommentInput from '../comment/CommentInput';
 
-function CalendarConsumption({info}){
+function CalendarConsumption({info, onClick}){
     const [content, setContent] = useState(info);
     console.log(content);
     const commentArray = content.comment.slice(0,1);
     console.log(commentArray);
     // TODO : userID에 따라서 닉네임 가져오는 과정이 있어야함
     return(
-        <StyledCalendarConsumption>
+        <StyledCalendarConsumption onClick={onClick}>
             <StyledHeader>
                 <StyledProfile>
                     <ICProfile/>
