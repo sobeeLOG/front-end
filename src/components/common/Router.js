@@ -8,6 +8,7 @@ import Setting from "../../pages/Setting";
 import Join from "../../pages/Join";
 import Login from "../../pages/Login";
 import Profile from "../../pages/Profile";
+import ChangePwd from "../../pages/ChangePwd";
 import ConsumptionDetail from "../../pages/ConsumptionDetail";
 
 function Router(){
@@ -23,6 +24,7 @@ function Router(){
             <Route path="/friend" element={<Friend />} />
             <Route path="/friend/search" element={<FriendSearch />} />
             <Route path="/setting" element={<Setting/>} />
+            <Route path="/changepwd" element={<ChangePwd/>} />
             <Route path="/consumptionDetail" element={<ConsumptionDetail/>}/>
          </Routes>
         </BrowserRouter>
