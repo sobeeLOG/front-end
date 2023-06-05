@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import Navigator from '../components/common/Navigator';
 import Header from '../components/common/Header';
 import CalendarConsumption from '../components/calendar/CalendarConsumption';
-import { consumptionList } from '../mock-data/consumptionList';
 import { client } from '../libs/api';
+import { useNavigate } from 'react-router-dom';
 
 function Feed() {
-    const [feedList, setFeedList] = useState(consumptionList);
+    const navigate = useNavigate();
+    const [feedList, setFeedList] = useState();
     const getFeedListData = async () => {
         const {data} = await client.get(`/calendarfeed`);
         console.log(data.data.feedList);
         setFeedList(data.data.feedList);
         console.log(feedList);
     }
+    
     
     useEffect(() => {
         getFeedListData();
@@ -24,7 +26,11 @@ function Feed() {
             <Header/>
             <StyledFeedList>
                 {feedList && feedList.map((element)=>{
-                    return <CalendarConsumption info={element} key={element.chistoryID}></CalendarConsumption>
+                    return <CalendarConsumption 
+                        info={element} 
+                        key={element.cHistoryID}
+                        onClick={()=>navigate(`/consumptionDetail?id=${element.cHistoryID}`)}
+                    ></CalendarConsumption> 
                 })}
             </StyledFeedList>
             <Navigator category="feed" />
