@@ -33,6 +33,7 @@ function FriendRequestList() {
         setRequests((prevRequests) =>
           prevRequests.filter((request) => request.senderID !== senderID)
         );
+        window.location.reload();
       }catch(error){
         console.log(error);
       }
@@ -50,6 +51,7 @@ function FriendRequestList() {
         setRequests((prevRequests) =>
           prevRequests.filter((request) => request.senderID !== senderID)
         );
+        window.location.reload();
       }catch(error){
         console.log(error);
       }
