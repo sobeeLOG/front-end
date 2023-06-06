@@ -1,26 +1,55 @@
 import styled from 'styled-components';
 import Header from '../components/common/Header2';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { client } from '../libs/api';
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const navigate = useNavigate();
+
+    const emailChangeHandler = (event) => {
+        setEmail(event.target.value);
+        console.log(email);
+    }
+
+    const passwordChangeHandler = (event) => {
+        setPassword(event.target.value);
+    }
+
+    const submitFormHandler = async (event) => {
+        event.preventDefault();
+        console.log('클릭됨');
+        const postData = {
+            email: JSON.stringify(email),
+            password: password,
+        }
+        const {data} =  await client.post(`/auth/login`,{...postData});
+        sessionStorage.setItem("user",JSON.stringify(data.data));
+        navigate('/feed');
+        // const user = JSON.parse(sessionStorage.getItem("user"));
+        // console.log(user.userID);
+    }
+
     return (
         <StyledLogin>
             <Header/>
-            <Text1>이메일</Text1>
-            <StyledBox1>
-                <input type="email" placeholder='이메일을 입력하세요'/>
-            </StyledBox1>
-            <Text2>비밀번호</Text2>
-            <StyledBox1>
-                <input type="password" placeholder='비밀번호를 입력하세요'/>
-            </StyledBox1>
-            <StyledBox2>로그인</StyledBox2>
+            <StyledLoginForm onSubmit={submitFormHandler}>
+                <Text1>아이디</Text1>
+                <StyledBox1>
+                    <input placeholder='이메일을 입력하세요' onChange={emailChangeHandler}/>
+                </StyledBox1>
+                <Text2>비밀번호</Text2>
+                <StyledBox1>
+                    <input type="password" placeholder='비밀번호를 입력하세요' onChange={passwordChangeHandler}/>
+                </StyledBox1>
+                <StyledBox2 type="submit">로그인</StyledBox2>
+            </StyledLoginForm>
             <Container>
-                <Word><Link to="/Join" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    회원 가입</Link></Word>
+                <Word onClick={()=>navigate("/join")}>회원가입</Word>
                 <Word>/</Word>
-                <Word><Link to="/ChangePwd" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    비밀번호 찾기</Link></Word>
+                <Word onClick={()=>navigate("/join")}>비밀번호 찾기</Word>
             </Container>
         </StyledLogin>
     );
@@ -36,6 +65,10 @@ const StyledLogin = styled.div`
     height: 100vh;
     overflow: hidden;
 `;
+
+const StyledLoginForm = styled.form`
+    
+`
 
 const StyledBox1 = styled.div`
     display: flex;
@@ -64,7 +97,7 @@ const StyledBox1 = styled.div`
     }
 `;
 
-const StyledBox2 = styled.div`
+const StyledBox2 = styled.button`
     display: flex;
     height: 4rem;
     width: 25rem;
@@ -97,7 +130,7 @@ const Container = styled.div`
     align-items: center;
 `;
 
-const Word = styled.div`
+const Word = styled.button`
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;

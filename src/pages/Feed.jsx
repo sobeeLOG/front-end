@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 function Feed() {
     const navigate = useNavigate();
     const [feedList, setFeedList] = useState();
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
     const getFeedListData = async () => {
-        const {data} = await client.get(`/calendarfeed`);
+        const {data} = await client.get(`/calendarfeed/${user.userID}`);
         console.log(data.data.feedList);
         setFeedList(data.data.feedList);
     }

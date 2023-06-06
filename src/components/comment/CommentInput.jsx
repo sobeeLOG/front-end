@@ -8,10 +8,12 @@ function CommentInput({cHistoryID, replyActive, replyCommentInfo}){
     // const cHistoryID = chistoryId;
     const [comment, setComment] = useState('');
     const [replyInfo, setReplyInfo] = useState();
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
     console.log(replyCommentInfo);
     const update = () => {
         if(replyActive){
-            const str = '@' + replyCommentInfo.userID;
+            const str = '@' + replyCommentInfo.nickname;
             setReplyInfo(str);
         }
     }
@@ -21,7 +23,7 @@ function CommentInput({cHistoryID, replyActive, replyCommentInfo}){
 
     const parentCommentClick = async () => {
         const postData = {
-            userID: 1,
+            userID: user.userID,
             content: JSON.stringify(comment),
             replyID: 0,
         }
@@ -33,7 +35,7 @@ function CommentInput({cHistoryID, replyActive, replyCommentInfo}){
 
     const childrenCommentClick = async () => {
         const postData = {
-            userID: 1,
+            userID: user.userID,
             content: JSON.stringify(comment),
             replyID: replyCommentInfo.commentID,
         }
