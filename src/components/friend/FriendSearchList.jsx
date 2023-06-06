@@ -80,8 +80,10 @@ const RequestList = styled.div`
 `;
 
 const ProfileImg = styled.div`
+  display: flex;
   margin-right: 1.25rem;
   width: 5rem;
   height: 5rem;
   align-items: center;
+  justify-content: center;
 `;
