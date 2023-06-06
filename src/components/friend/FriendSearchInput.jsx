@@ -12,7 +12,7 @@ function FriendSearchInput({ value, onChange, onSubmit }) {
             value={value}
             onChange={onChange}
             />
-          <button className='button_white' onClick={onSubmit}><ICSearchButton/></button>
+          <SearchButton onClick={onSubmit}><ICSearchButton/></SearchButton>
     </FindFriends>
   );
 }
@@ -25,7 +25,7 @@ const FindFriends = styled.div`
   box-sizing: border-box;
   background: white;
   border: 1px solid black;
-  border-radius: 0.625rem;
+  border-radius: 1rem;
   margin: 2rem 1.5rem 0 1.5rem;
 `;
 
@@ -34,4 +34,15 @@ const StyledInput = styled.input`
   height: 2.5rem;
   border: white;
   margin: 0.6875rem 1.4375rem;
+`;
+
+const SearchButton = styled.button `
+  width: 5.8rem;
+  border-radius: 0.625rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  float: inline-end;
+  background: white;
+  border: white;
+  color: black;
 `;
