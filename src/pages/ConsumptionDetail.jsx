@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import queryString from 'query-string';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { client } from '../libs/api';
 import Header from '../components/common/Header';
@@ -13,11 +13,14 @@ import CommentInput from '../components/comment/CommentInput';
 function ConsumptionDetail(){
     const {search} = useLocation();
     const cHistoryID = queryString.parse(search).id;
-    
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const [status, setStatus] = useState(parseInt(10));
     const [consumptionDetail, setConsumptionDetail] = useState();
     const [comment, setComment] = useState();
     const [replyActive, setReplyActive] = useState(false);
     const [replyCommentInfo, setReplyCommentInfo] = useState([]);
+    const navigate = useNavigate();
+
 
     const getConsumptionDetailData = async () => {
         const {data} = await client.get(`/consumptions/${cHistoryID}`);
@@ -28,12 +31,27 @@ function ConsumptionDetail(){
     const getCommentData = async() => {
         const {data} = await client.get(`/comment/${cHistoryID}`);
         data.data && setComment(data.data);
-        console.log(comment);
     }
+
+    const getEmoticonData = async() => {
+        const {data} = await client.get(`/emoticon/${cHistoryID}/${user.userID}`);
+        setStatus(data.data[0].category);
+    }
+
     useEffect(() => {
         getConsumptionDetailData();
         getCommentData();
+        getEmoticonData();
     },[]);
+    
+    const onClickHandler = async(category) => {
+        const postData = {
+            userID: user.userID,
+            category: category
+        }
+        const {data} = await client.post(`/emoticon/${cHistoryID}`,postData);
+        window.location.reload();
+    }
 
     return(
         <StyledConsumptionDetail>
@@ -70,10 +88,14 @@ function ConsumptionDetail(){
                     <StyledGoodEmoticon>
                         <p>{consumptionDetail && consumptionDetail.positiveEmoticonCount}</p>
                         <p>칭찬해요</p>
-                        <ICGoodEmoticon width="25" height="25"></ICGoodEmoticon>
+                        {(parseInt(status)===10) ? <ICGoodEmoticon width="25" height="25" stroke="white" fillOpacity={0.3} onClick={()=>onClickHandler(0)}/> :
+                            (parseInt(status)===0) ? <ICGoodEmoticon width="25" height="25" stroke="white" stroke-width="0.6" strokeOpacity={1} fillOpacity={1} onClick={()=>onClickHandler(0)}/>: 
+                                    <ICGoodEmoticon width="25" height="25" stroke="white" stroke-width="0.6" fillOpacity={0.3} onClick={()=>onClickHandler(0)}/>}
                     </StyledGoodEmoticon>
                     <StyledBadEmoticon>
-                        <ICBadEmoticon width="25" height="25"></ICBadEmoticon>
+                        {(parseInt(status)===10) ? <ICBadEmoticon width="25" height="25" stroke="white" fillOpacity={0.3} onClick={()=>onClickHandler(1)}/> :
+                            (parseInt(status)===0) ? <ICBadEmoticon width="25" height="25" stroke="white" fillOpacity={0.3} onClick={()=>onClickHandler(1)}/> :
+                                <ICBadEmoticon width="25" height="25" stroke="white" stroke-width="0.6" strokeOpacity={1} fillOpacity={1} onClick={()=>onClickHandler(1)}/>}
                         <p>아쉬워요</p>
                         <p>{consumptionDetail && consumptionDetail.negativeEmoticonCount}</p>
                     </StyledBadEmoticon>

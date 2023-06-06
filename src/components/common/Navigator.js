@@ -39,7 +39,7 @@ const StyledNavigator = styled.footer`
     left: 0;
     bottom: 0;
     box-sizing:border-box;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 6.4rem;
     background-color: #FFFFFF;
 `;
