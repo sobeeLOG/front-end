@@ -5,11 +5,13 @@ import { ICProfile } from '../../assets';
 import styled from "styled-components";
 
 function FriendSearchList({results}) {
-  const [myID, setMyID] = useState(null);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  const [myID, setMyID] = useState();
 
   useEffect(() => {
     //TODO: 로그인 한 사용자의 아이디를 가져오도록 바꾸기
-    setMyID(1);
+    setMyID(user.userID);
   }, [myID]);
 
   const handleSendRequest = async(senderID, receiverID) => {

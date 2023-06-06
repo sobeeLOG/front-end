@@ -6,15 +6,13 @@ import styled from "styled-components";
 
 function FriendRequestList() {
   const [requests, setRequests] = useState([]);
-  const [myID, setMyID] = useState(null);
-  
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const [myID, setMyID] = useState(user.userID);
+
   useEffect(() => {
     const fetchFriendRequestList = async () => {
       try {
         //TODO: 로그인 한 사용자의 아이디를 가져오도록 바꾸기
-        const inUserID = 1; 
-        setMyID(inUserID);
-
         const response = await client.get(`/friends/requests/${myID}`);
         const requestList = response.data.data.requestList;
         setRequests(requestList);
