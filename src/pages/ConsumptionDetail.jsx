@@ -5,19 +5,22 @@ import styled from 'styled-components';
 import { client } from '../libs/api';
 import Header from '../components/common/Header';
 import Navigator from '../components/common/Navigator';
-import {ICProfile, ICGoodEmoticon, ICBadEmoticon} from '../assets';
+import {ICProfile} from '../assets';
 
 import Tag from '../components/common/TagDesign';
 import CommentInput from '../components/comment/CommentInput';
+import ImoticonInput from '../components/emoticon/ImoticonInput';
 
 function ConsumptionDetail(){
     const {search} = useLocation();
     const cHistoryID = queryString.parse(search).id;
+    const user = JSON.parse(sessionStorage.getItem("user"));
     
     const [consumptionDetail, setConsumptionDetail] = useState();
     const [comment, setComment] = useState();
     const [replyActive, setReplyActive] = useState(false);
     const [replyCommentInfo, setReplyCommentInfo] = useState([]);
+    const [emoticon, setEmoticon] = useState();
 
     const getConsumptionDetailData = async () => {
         const {data} = await client.get(`/consumptions/${cHistoryID}`);
@@ -28,11 +31,21 @@ function ConsumptionDetail(){
     const getCommentData = async() => {
         const {data} = await client.get(`/comment/${cHistoryID}`);
         data.data && setComment(data.data);
+        console.log(data);
         console.log(comment);
     }
+
+        // 유저가 해당 소비내역에 남긴 좋아요/ 싫어요 정보 가져오기
+    const getEmoticonData = async() => {
+        let {data} = await client.get(`/emoticon/${cHistoryID}/${user.userID}`);
+        data.data && setEmoticon(data.data);
+        console.log(emoticon);
+    }
+
     useEffect(() => {
         getConsumptionDetailData();
         getCommentData();
+        getEmoticonData();
     },[]);
 
     return(
@@ -70,10 +83,10 @@ function ConsumptionDetail(){
                     <StyledGoodEmoticon>
                         <p>{consumptionDetail && consumptionDetail.positiveEmoticonCount}</p>
                         <p>칭찬해요</p>
-                        <ICGoodEmoticon width="25" height="25"></ICGoodEmoticon>
+                        <ImoticonInput cHistoryID={cHistoryID} category={0} clickCategory={emoticon}/>
                     </StyledGoodEmoticon>
                     <StyledBadEmoticon>
-                        <ICBadEmoticon width="25" height="25"></ICBadEmoticon>
+                        <ImoticonInput cHistoryID={cHistoryID} category={1} clickCategory={emoticon}/>
                         <p>아쉬워요</p>
                         <p>{consumptionDetail && consumptionDetail.negativeEmoticonCount}</p>
                     </StyledBadEmoticon>
