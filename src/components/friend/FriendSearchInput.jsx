@@ -3,11 +3,16 @@ import './Friend.css'
 import { ICSearchButton } from '../../assets';
 import styled from "styled-components";
 
-function FriendSearchInput() {
+function FriendSearchInput({ value, onChange, onSubmit }) {
   return (
     <FindFriends>
-          <StyledInput type='text' placeholder='닉네임으로 친구를 추가해 보세요.'></StyledInput>
-          <button className='button_white'><ICSearchButton/></button>
+          <StyledInput 
+            type='text' 
+            placeholder='닉네임으로 친구를 추가해 보세요.'
+            value={value}
+            onChange={onChange}
+            />
+          <button className='button_white' onClick={onSubmit}><ICSearchButton/></button>
     </FindFriends>
   );
 }
