@@ -7,6 +7,7 @@ import FriendSearchInput from '../components/friend/FriendSearchInput';
 import FriendSearchList from '../components/friend/FriendSearchList';
 
 function FriendSearch() {
+    const user = JSON.parse(sessionStorage.getItem("user"));
     const [keyword, setKeyword] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
@@ -19,6 +20,7 @@ function FriendSearch() {
           console.log("[검색어]:" + keyword);
           const response = await client.get(`/friends/search`, {
             params: {
+              userid: user.userID,
               nickname: keyword
             }
           });
