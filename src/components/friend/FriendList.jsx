@@ -28,10 +28,10 @@ function FriendList({info}){
             <MyFriendList>
                 {userName.map((userNameElem, index) => {
                     return (
-                        <div className='myFriends_profile' key = {index}>
+                        <MyFriendsProfile key = {index}>
                             <ProfileUl><ICProfile/></ProfileUl>
                             <ProfileUl>{userNameElem}</ProfileUl>
-                        </div>
+                        </MyFriendsProfile>
                     );
                 })}
             </MyFriendList>
@@ -54,4 +54,15 @@ const MyFriendList = styled.div`
     flex-wrap: wrap;
     gap: 1em;
     margin: 1.25rem;
+`;
+
+const MyFriendsProfile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 9.5rem;
+  height: 12.5rem;
+  background: rgba(202, 212, 248, 0.71);
+  border-radius: 0.625rem;
 `;

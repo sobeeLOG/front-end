@@ -1,6 +1,6 @@
 .grid {
   border: 0.125rem solid;
-  border-radius: 0.625rem;
+  border-radius: 1rem;
   padding: 0.25rem 0.1rem;
   margin: 0.25rem 1.4375rem;
 }
@@ -12,68 +12,4 @@
   line-height: 1.5rem;
   padding: 1.25rem;
   line-height: 2;
-}
-
-.myFriends_profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 9.5rem;
-  height: 12.5rem;
-  background: rgba(202, 212, 248, 0.71);
-  border-radius: 0.625rem;
-}
-
-.request_list {
-  display: flex;
-  align-items: center;
-  margin: 1.25rem;
-  font-size: 15px;
-}
-
-.profile_img {
-  margin-right: 1.25rem;
-  width: 5rem;
-  height: 5rem;
-  align-items: center;
-}
-
-.reply_buttons {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-}
-
-.button_blue {
-  width: 5.8rem;
-  border-radius: 0.625rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  float: inline-end;
-  background: rgba(44, 84, 228, 0.85);
-  border: rgba(44, 84, 228, 0.85);
-  color: white;
-}
-
-.button_grey {
-  width: 5.8rem;
-  border-radius: 0.625rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  float: inline-end;
-  background: rgba(188, 204, 222, 0.85);
-  border: rgba(188, 204, 222, 0.85);
-  color: black;
-}
-
-.button_white {
-  width: 5.8rem;
-  border-radius: 0.625rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  float: inline-end;
-  background: white;
-  border: white;
-  color: black;
 }
