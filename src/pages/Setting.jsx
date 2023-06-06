@@ -2,19 +2,27 @@ import styled from 'styled-components';
 import Navigator from '../components/common/Navigator';
 import Header from '../components/common/Header';
 import { ICProfile } from '../assets';
+import {useNavigate} from 'react-router-dom';
 
 function Setting() {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const navigate = useNavigate();
+    const logoutClickHandler = () => {
+        navigate('/login');
+        sessionStorage.removeItem("user");
+    }
+    
     return (
         <StyledSetting>
             <Header/>
             <StyledProfile></StyledProfile>
             <Navigator category="setting" />
             <StyledBox1>
-                <StyledText1>닉네임</StyledText1>
+                <StyledText1>{user.nickname}</StyledText1>
                 <StyledText2>한 달 목표 소비액</StyledText2>
                 <StyledBox2>프로필 설정</StyledBox2>
                 <StyledBox2>비밀번호 변경</StyledBox2>
-                <StyledBox2>로그아웃</StyledBox2>
+                <StyledBox2 onClick={logoutClickHandler}>로그아웃</StyledBox2>
             </StyledBox1>
         </StyledSetting>
     );
@@ -48,11 +56,11 @@ const StyledBox1 = styled.div`
     flex-direction: column;
     height: 80%;
     width: 100%;
-    border-radius: 5rem;
+    border-radius: 3.5rem;
     background-color: rgba(202, 212, 248, 0.8);
 `;
 
-const StyledBox2 = styled.div`
+const StyledBox2 = styled.button`
     display: flex;
     height: 6rem;
     width: 32rem;

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Logo } from '../../assets';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 function Header(){
+    const navigate = useNavigate();
     return (
         <StyledHeader>
-            <Logo />
+            <Logo onClick={()=>navigate("/")}/>
         </StyledHeader>
     )
 }

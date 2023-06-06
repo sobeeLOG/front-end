@@ -42,6 +42,7 @@ function ConsumptionModal({open, close, date}){
     const [tagContent, setTagContent] = useState('');
     const [secret, setSecret] = useState(true);
     const [check, setCheck] = useState(false);
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     const tagClickHandler = (idx) => {
         const newArr = Array(tagContentList.length).fill(false);
@@ -67,7 +68,7 @@ function ConsumptionModal({open, close, date}){
         event.preventDefault();
         console.log(date);
         const postData = {
-            userID: 1,
+            userID: user.userID,
             date: JSON.stringify(date),
             content: JSON.stringify(content),
             amount: JSON.stringify(price),

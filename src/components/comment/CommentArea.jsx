@@ -8,10 +8,10 @@ function CommentArea({comment}){
         <StyledComment>
             <StyledProfile>
                 <ICProfile/>
-                <p>{JSON.stringify(comment.userID)}</p>
+                <p>{comment.nickname}</p>
             </StyledProfile>
             <StyledContent>
-                <p>{JSON.stringify(comment.content)}</p>
+                <p>{comment.content}</p>
             </StyledContent>
         </StyledComment>
     )

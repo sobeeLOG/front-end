@@ -12,14 +12,18 @@ import ConsumptionModal from '../components/calendar/ConsumptionModal';
 import { client } from '../libs/api';
 import { useNavigate } from 'react-router-dom';
 
+
+
 function MyCalendar() {
     const navigate = useNavigate();
     const today = new Date();
     const defaultDate = format(today, 'yyyy-MM-dd');
-    const [list, setList] = useState(consumptionList);
+    const [list, setList] = useState();
     const [chosenDate, setChosenDate] = useState(defaultDate);
     const [modalOpen, setModalOpen] = useState(false);
     const [todayAmount, setTodayAmount] = useState(0);
+
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     const openModal = () => {
         setModalOpen(true);
@@ -30,7 +34,7 @@ function MyCalendar() {
     }
 
     const getConsumptionListDataByDate = async () => {
-        const {data} = await client.get(`/mycalendar/date/${chosenDate}`);
+        const {data} = await client.get(`/mycalendar/date/${chosenDate}/${user.userID}`);
         console.log("chosenDate",chosenDate);
         setList(data.data.result);
     }
@@ -38,7 +42,7 @@ function MyCalendar() {
     const getTodayAmount = async() => {
         const hypenNoDate = chosenDate.replaceAll('-','')
         //TODO: userID 수정해야함
-        const {data} = await client.get(`/mycalendar/amount?date=${hypenNoDate}&&userID=1`);
+        const {data} = await client.get(`/mycalendar/amount?date=${hypenNoDate}&&userID=${user.userID}`);
         console.log(data.data.amount[0].t_amount);
         setTodayAmount(data.data.amount[0].t_amount);
     }

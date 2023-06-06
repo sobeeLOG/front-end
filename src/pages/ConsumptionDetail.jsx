@@ -41,7 +41,7 @@ function ConsumptionDetail(){
             <StyledDetail>
                 <StyledProfile>
                     <ICProfile/>
-                    <div>{consumptionDetail && consumptionDetail.userID}</div>
+                    <div>{consumptionDetail && consumptionDetail.nickname}</div>
                 </StyledProfile>
                 <StyledLine/>
                 <StyledBody>
@@ -148,6 +148,9 @@ const StyledProfile = styled.div`
     gap: 0.8rem;
     height: 3.528rem;
     margin-left: 0.3rem;
+    div{
+        font-size: 1.2rem;
+    }
 `
 
 const StyledLine = styled.hr`

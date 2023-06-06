@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { Logo } from '../assets';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate();
+    
     return (
         <StyledHome>
             <StyledLogo>
                 <Logo/>
             </StyledLogo>
-            <Link to="/Login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <StyledStart>시작하기</StyledStart></Link>
+                    <StyledStart onClick={() => navigate('/login')}>시작하기</StyledStart>
         </StyledHome>
     );
 }
@@ -25,7 +26,7 @@ const StyledHome = styled.div`
     overflow: hidden;
 `;
 
-const StyledStart = styled.div`
+const StyledStart = styled.button`
     display: flex;
     height: 4rem;
     width: 25rem;
