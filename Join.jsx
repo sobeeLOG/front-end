@@ -1,8 +1,9 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
-import Header from '../components/common/Header3';
+import Header from '../components/common/Header2';
 import { client } from '../libs/api';
 import {useNavigate} from 'react-router-dom';
+import Navigator from '../components/common/Navigator';
 
 function Join() {
     const navigate = useNavigate();

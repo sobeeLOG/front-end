@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import Header from '../components/common/Header3';
+import Header from '../components/common/Header2';
 import { useState } from 'react';
 import { client } from '../libs/api';
 import {useNavigate} from 'react-router-dom';
+import Navigator from '../components/common/Navigator';
 
 function Login() {
     const [email, setEmail] = useState();
@@ -36,11 +37,11 @@ function Login() {
         <StyledLogin>
             <Header/>
             <StyledLoginForm onSubmit={submitFormHandler}>
-                <Text1>아이디</Text1>
+                <p>아이디</p>
                 <StyledBox1>
-                    <input placeholder='아이디를 입력하세요' onChange={emailChangeHandler}/>
+                    <input placeholder='이메일을 입력하세요' onChange={emailChangeHandler}/>
                 </StyledBox1>
-                <Text2>비밀번호</Text2>
+                <p>비밀번호</p>
                 <StyledBox1>
                     <input type="password" placeholder='비밀번호를 입력하세요' onChange={passwordChangeHandler}/>
                 </StyledBox1>
@@ -67,7 +68,13 @@ const StyledLogin = styled.div`
 `;
 
 const StyledLoginForm = styled.form`
-    
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    p{
+        font-size: 15px;
+    }
 `
 
 const StyledBox1 = styled.div`
@@ -77,7 +84,7 @@ const StyledBox1 = styled.div`
     background-color: #FFFFFF;
     border-radius: 1rem;
     border: 1px solid #000000;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     padding: 0.7rem 1.3rem;
     input { 
         width: 100%;
@@ -103,7 +110,7 @@ const StyledBox2 = styled.button`
     width: 25rem;
     background-color: rgba(44, 84, 228, 0.8);
     border-radius: 1rem;
-    margin-bottom: 5rem;
+    margin-bottom: 7rem;
     color: #FFFFFF;
     text-align: center;
     justify-content: center;
@@ -111,19 +118,19 @@ const StyledBox2 = styled.button`
     font-size: 20px;
 `;
 
-const Text1 = styled.div`
-    position: absolute;
-    top: 28%;
-    left: 42%;
-    font-size: 15px;
-`;
+// const Text1 = styled.div`
+//     position: absolute;
+//     top: 31%;
+//     left: 20%;
+//     font-size: 15px;
+// `;
 
-const Text2 = styled.div`
-    position: absolute;
-    top: 40%;
-    left: 42%;
-    font-size: 15px;
-`;
+// const Text2 = styled.div`
+//     position: absolute;
+//     top: 41.5%;
+//     left: 20%;
+//     font-size: 15px;
+// `;
 
 const Container = styled.div`
     display: flex;
