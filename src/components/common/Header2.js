@@ -13,9 +13,7 @@ function Header2(){
 export default Header2;
 
 const StyledHeader = styled.header`
-    position: fixed;
-    top: 17%;
-    left: 35%;
-    background-color: #FFFFFF;
+    position: flex;
+    background-color: rgba(0, 0, 0, 0);
 `
 

@@ -15,11 +15,11 @@ function Setting() {
     return (
         <StyledSetting>
             <Header/>
-            <StyledProfile></StyledProfile>
             <Navigator category="setting" />
             <StyledBox1>
+                <StyledProfile></StyledProfile>
                 <StyledText1>{user.nickname}</StyledText1>
-                <StyledText2>한 달 목표 소비액</StyledText2>
+                {/* <StyledText2>한 달 목표 소비액</StyledText2> */}
                 <StyledBox2>프로필 설정</StyledBox2>
                 <StyledBox2>비밀번호 변경</StyledBox2>
                 <StyledBox2 onClick={logoutClickHandler}>로그아웃</StyledBox2>
@@ -42,11 +42,10 @@ const StyledSetting = styled.div`
 `;
 
 const StyledProfile = styled(ICProfile)`
-    position: fixed;
-    top: 26%;
-    left: 16%;
+    display: flex;
+    margin-right: 150px;
     height: 120px;
-    width: 110px;
+    width: 120px;
 `;
 
 const StyledBox1 = styled.div`
@@ -56,6 +55,7 @@ const StyledBox1 = styled.div`
     flex-direction: column;
     height: 80%;
     width: 100%;
+    margin-bottom: 5%;
     border-radius: 3.5rem;
     background-color: rgba(202, 212, 248, 0.8);
 `;
@@ -81,9 +81,9 @@ const StyledText1 = styled.div`
     left: 4rem;
 `;
 
-const StyledText2 = styled.div`
-    position: relative;
-    font-size: 15px;
-    bottom: 5.5rem;
-    left: 6rem;
-`;
+// const StyledText2 = styled.div`
+//     position: relative;
+//     font-size: 15px;
+//     bottom: 5.5rem;
+//     left: 6rem;
+// `;
